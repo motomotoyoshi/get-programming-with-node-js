@@ -1,5 +1,7 @@
 "use strict";
 
+const homeController = require("./controllers/homeController");
+
 const
   port = 3000,
   express = require("express"),
@@ -19,10 +21,7 @@ app.use(
 
 app.use(express.json());
 
-// app.get("/items/:vegetable", (req, res) => {
-//   let veg = req.params.vegetable;
-//   res.send(`This is the page for ${veg}`);
-// });
+app.get("/items/:vegetable", homeController.sendReqParam);
 
 app.post("/", (req, res) => {
   console.log(req.body);
