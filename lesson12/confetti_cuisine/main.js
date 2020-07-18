@@ -3,8 +3,12 @@
 const express = require("express");
 const app = express();
 const homeCOntroller = require("./controllers/homeController");
+const layouts = require("express-ejs-layouts");
 
 app.set("port", process.env.PORT || 3000);
+app.set("view engine", "ejs");
+app.use(layouts);
+
 app.use(
   express.urlencoded({
     extended: false
