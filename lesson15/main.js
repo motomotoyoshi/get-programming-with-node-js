@@ -6,6 +6,8 @@ const mongoose = require("mongoose");
 const subscribersController = require("./controllers/subscribersController");
 const subscriber = require("./model/subscriber");
 
+mongoose.Promise = global.Promise
+
 mongoose.connect(
   "mongodb://localhost:27017/recipe_db",
   {
@@ -51,6 +53,14 @@ db.once("open", () => {
 // });
 
 app.set("view engine", "ejs");
+
+app.use(
+  express.urlencoded({
+    extended: false
+  })
+);
+app.use(express.json());
+
 app.get(
   "/subscribers",
   subscribersController.getAllSubscribers,
@@ -60,6 +70,10 @@ app.get(
     res.render("subscribers", {subscribers: req.data});
   }
 );
+
+app.get("/contact", subscribersController.getSubscriptionPage);
+app.post("/subscribe", subscribersController.saveSubscriber);
+
 
 app.listen("3000");
 console.log("http://localhost:3000/subscribers");
