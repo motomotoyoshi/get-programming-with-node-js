@@ -3,8 +3,15 @@
 const express = require("express");
 const app = express();
 
+const subscribersController = require("./controllers/subscriberController");
 const homeController = require("./controllers/homeController");
 const errorController = require("./controllers/errorController");
+
+const mongoose = require("mongoose");
+mongoose.connect("mongodb://localhost:27017/confetti_cuisine", {
+  useNewUrlParser: true,
+});
+mongoose.Promise = global.Promise;
 
 const layouts = require("express-ejs-layouts");
 
@@ -22,8 +29,9 @@ app.get("/", (req, res) => {
 });
 
 app.get("/courses", homeController.showCourses);
-app.get("/contact", homeController.showSignUp);
-app.post("/contact", homeController.postedSignUpForm);
+app.get("/contact", subscribersController.getSubscriptionPage);
+app.get("/subscribers", subscribersController.getAllSubscribers);
+app.post("/subscribe", subscribersController.saveSubscriber);
 
 app.use(errorController.pageNotFoundError);
 app.use(errorController.internalServerError);
