@@ -1,6 +1,5 @@
 "use strict";
 
-const subscriber = require("../model/subscriber");
 const Subscriber = require("../model/subscriber");
 
 exports.getAllSubscribers = (req, res) => {
