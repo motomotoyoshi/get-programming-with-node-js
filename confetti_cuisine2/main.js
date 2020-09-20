@@ -1,5 +1,7 @@
 "use strict";
 
+const methodOverride = require("method-override");
+
 const express = require("express");
 const app = express();
 
@@ -18,6 +20,7 @@ const layouts = require("express-ejs-layouts");
 app.set("port", process.env.PORT || 3000);
 app.set("view engine", "ejs");
 
+app.use(methodOverride("_method", {methods:["POST", "GET"]}));
 app.use(express.urlencoded({extended: false}));
 app.use(express.json());
 app.use(layouts);
