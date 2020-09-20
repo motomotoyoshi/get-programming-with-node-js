@@ -1,0 +1,18 @@
+<h1>Course Data for <%= course.name %> </h1>
+<table>
+    <tr>
+        <th>Name</th>
+        <td><%= course.name %> </td>
+    </tr>
+<table>
+    <tr>
+        <th>Email</th>
+        <td><%= course.email %> </td>
+    </tr>
+<table>
+    <tr>
+        <th>Zip Code</th>
+        <td><%= course.zipCode %> </td>
+    </tr>
+</table>
+<p>This course has <%= course.courses.length %> associated course(s)</p>
